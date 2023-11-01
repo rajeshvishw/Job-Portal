@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Profile Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0px;
+        }
+
+        .column {
+            flex: 1;
+            padding: 20px;
+            border: 0px solid #ffffff;
+            border-radius: 5px;
+            margin: 0px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+               
+    </style>
+</head>
+<body>
+    <form action="{% url 'updateProfile' pk=request.session.id %}" method="POST" enctype="multipart/form-data">   
+        {% csrf_token %}
+    <img src="{{MEDIA_URL}}{{image.url}}" alt="Image from Backend" style="height: 140px; width: 200px;">
+    <div class="container">
+        <div class="column">
+            <h2>Personal Information</h2>
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName"  name="firstName" value="{{firstname}}">
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" value="{{lastname}}">
+            
+            <label for="lastName">Email</label>
+            <input type="text" id="email" name="email" value="{{email}}">
+
+            <label for="city">City</label>
+            <input type="text" id="city" name="city">
+
+            <label for="country">Country</label>
+            <select id="country" name="country">
+                <option value="INDIA">INDIA</option>
+                <option value="OTHER">OTHER</option>
+            </select>
+            <label for="image">Upload Image</label>
+            <input type="file" id="image" name="image">
+        </div>
+        <div class="column">
+            <h2>Job Information</h2>
+            <label for="jobCategory">Job Category</label>
+            <select id="jobCategory" name="jobCategory">
+                <option value="Django Developer">Django Developer</option>
+                <option value="Python Developer">Python Developer</option>
+                <option value="Fullstack Developer">Fullstack Developer</option>
+            </select>
+
+            <label for="jobType">Job Type</label>
+            <select id="jobType" name="jobType">
+                <option value="fullTime">Full-Time</option>
+                <option value="partTime">Part-Time</option>
+                <option value="contract">Contract</option>
+            </select>
+
+            <label for="minSalary">Minimum Salary</label>
+            <input type="number" id="minSalary" name="minSalary">
+
+            <label for="maxSalary" >Maximum Salary</label>
+            <input type="number" id="maxSalary" name="maxSalary">
+            
+            <label for="maxSalary" >Desdryption</label>
+            <input type="text" id="" name="Desdryption">
+        </div>
+    </div>
+    <div style="text-align: center;">
+        <button type="submit" name="profileecompany">Submit</button>
+    </div>
+    </form>
+</body>
+</html>
